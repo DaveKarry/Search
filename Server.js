@@ -5,10 +5,15 @@ const models = require('./models/models')
 const router  = require('./routes/index')
 const cors = require('cors')
 const errorHandler = require('./middleware/ErrorHendlingMiddleware')
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
+const docs = require('./docs');
+
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs))
 app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({extended: true,}));
