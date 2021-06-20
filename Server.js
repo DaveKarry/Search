@@ -6,7 +6,6 @@ const router  = require('./routes/index')
 const cors = require('cors')
 const errorHandler = require('./middleware/ErrorHendlingMiddleware')
 const swaggerUI = require('swagger-ui-express')
-const swaggerJsDoc = require('swagger-jsdoc')
 const docs = require('./docs');
 
 
@@ -18,6 +17,9 @@ app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({extended: true,}));
 app.use('/api', router)
+app.get('/', (req, res) => {
+  res.send('Документацию посмотри на /api-docs')
+})
 // обработка ошибок всегда ласт
 app.use(errorHandler)
 

@@ -83,8 +83,57 @@ module.exports = {
                     Status: 'BAN'
                 }
 
-            }
+            },
+            Event:{
+                type: 'object',
+                properties:{
+                    Id:{
+                        type: 'integer',
+                        description: 'Уникальный идентифкатор'
+                    },
+                    Name:{
+                        type: 'string',
+                        description: 'Название поиска',
+                        required: true
+                    },
+                    Target:{
+                        type: 'string',
+                        description: 'Цель поиска, подробности о человеке',
+                        required: true
+                    },
+                    Date:{
+                        type: 'string',
+                        pattern: 'YYYY-MM-DD',
+                        description: 'Дата начала поиска',
+                        required: true
 
+                    },
+                    Status:{
+                        type: 'string',
+                        description: 'Состояние поиска: ACTIVE, END'
+                    },
+                    Description:{
+                        type: 'string',
+                        description: 'Дополнительные факты/параметры поиска',
+                        required: true
+                    },
+                    CityId:{
+                        type: 'integer',
+                        description: 'id города',
+                        required: true
+                    }
+                },
+                example:{
+                    Id: 234,
+                    Name: 'Поиск пр городе N',
+                    Target: 'Девушка 26 лет, Мария Машина',
+                    Date: '2021-10-03',
+                    Status: 'ACTIVE',
+                    Description: 'Потерялась в окрестностях леса, пока искала грибы',
+                    CityId: 54
+                }
+
+            }
         }
     }
 }
