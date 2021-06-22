@@ -21,11 +21,15 @@ module.exports = {
                     },
                     createdAt:{
                         type: 'date',
-                        description: 'Создание записи'
+                        description: 'Создание записи',
+                        required: false
+
                     },
                     updatedAt:{
                         type: 'date',
-                        description: 'обновление записи'
+                        description: 'обновление записи',
+                        required: false
+
                     }
                 },
                 example:{
@@ -34,6 +38,25 @@ module.exports = {
                     Description: "Surgut District",
                     createdAt: "2021-06-17T10:37:18.000Z",
                     updatedAt: "2021-06-17T10:37:18.000Z"
+                }          
+            },
+            CreateCity:{
+                type: 'object',
+                properties:{
+                    Name:{
+                        type: 'string',
+                        description: 'Название города',
+                        required: true
+                    },  
+                    Description:{
+                        type: 'string',
+                        description: 'Описание города',
+                        required: true
+                    }
+                },
+                example:{
+                    Name: "Surgut",
+                    Description: "Surgut District"
                 }          
             },
             User:{
