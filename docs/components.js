@@ -215,7 +215,7 @@ module.exports = {
                         description: 'Дополнительные факты/параметры поиска',
                         required: true
                     },
-                    CityId:{
+                    cityId:{
                         type: 'integer',
                         description: 'id города',
                         required: true
@@ -228,7 +228,47 @@ module.exports = {
                     Date: '2021-10-03',
                     Status: 'ACTIVE',
                     Description: 'Потерялась в окрестностях леса, пока искала грибы',
-                    CityId: 54
+                    cityId: 54
+                }
+
+            },
+            CreateEvent:{
+                type: 'object',
+                properties:{
+                    Name:{
+                        type: 'string',
+                        description: 'Название поиска',
+                        required: true
+                    },
+                    Target:{
+                        type: 'string',
+                        description: 'Цель поиска, подробности о человеке',
+                        required: true
+                    },
+                    Date:{
+                        type: 'string',
+                        pattern: 'YYYY-MM-DD',
+                        description: 'Дата начала поиска',
+                        required: true
+
+                    },
+                    Description:{
+                        type: 'string',
+                        description: 'Дополнительные факты/параметры поиска',
+                        required: true
+                    },
+                    cityId:{
+                        type: 'integer',
+                        description: 'id города',
+                        required: true
+                    }
+                },
+                example:{
+                    Name: 'Поиск пр городе N',
+                    Target: 'Девушка 26 лет, Мария Машина',
+                    Date: '2021-10-03',
+                    Description: 'Потерялась в окрестностях леса, пока искала грибы',
+                    cityId: 54
                 }
 
             }

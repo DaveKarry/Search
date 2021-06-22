@@ -151,7 +151,83 @@ module.exports = {
                     }
                 }
             }
-        }
+        },
+        '/api/event':{
+            get:{
+                tags: ['Event'],
+                description: "Get event list",
+                operationId: 'getEventList',
+                responses:{
+                    '200':{
+                        description:"EventList were obtained",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:'#/components/schemas/Event'
+                                }
+                            },
+                            'application/xml':{
+                                schema:{
+                                    $ref:'#/components/schemas/Event'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            post:{
+                tags:['Event'],
+                description: "Create new event",
+                operationId: "createEvent",
+                requestBody: {
+                    content:{
+                        'application/json': {
+                            schema:{
+                                $ref:'#/components/schemas/CreateEvent'
+                            }
+                        }
+                    }
+                },
+                responses:{
+                    '200':{
+                        description: "Event created successfully"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    }
+                }
+            }
+        },
+        '/api/event/{id}':{
+            get:{
+                tags:['Event'],
+                description: "Get one event by id",
+                operationId: "getEventById",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single event id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
 
 
     }
