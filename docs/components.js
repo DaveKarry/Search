@@ -18,12 +18,22 @@ module.exports = {
                         type: 'string',
                         description: 'Описание города',
                         required: true
-                    }  
+                    },
+                    createdAt:{
+                        type: 'date',
+                        description: 'Создание записи'
+                    },
+                    updatedAt:{
+                        type: 'date',
+                        description: 'обновление записи'
+                    }
                 },
                 example:{
                     Id: 6432,
                     Name: "Surgut",
-                    Description: "Surgut District"
+                    Description: "Surgut District",
+                    createdAt: "2021-06-17T10:37:18.000Z",
+                    updatedAt: "2021-06-17T10:37:18.000Z"
                 }          
             },
             User:{
