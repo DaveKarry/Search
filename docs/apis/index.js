@@ -77,7 +77,82 @@ module.exports = {
                     }
                 }
             }
+        },
+        '/api/user/registration':{
+            post:{
+                tags:['User'],
+                description: "Create new user",
+                operationId: "createUser",
+                requestBody: {
+                    content:{
+                        'application/json': {
+                            schema:{
+                                $ref:'#/components/schemas/CreateUser'
+                            }
+                        }
+                    }
+                },
+                responses:{
+                    '200':{
+                        description: "Пользователь создан"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    },
+                    '400':{
+                        description: "Запрос не выполнен"
+                    }
+                }
+            }
+        },
+        '/api/user/login':{
+            post:{
+                tags:['User'],
+                description: "login user",
+                operationId: "loginUser",
+                requestBody: {
+                    content:{
+                        'application/json': {
+                            schema:{
+                                $ref:'#/components/schemas/LoginUser'
+                            }
+                        }
+                    }
+                },
+                responses:{
+                    '200':{
+                        description: "Пользователь создан"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    },
+                    '400':{
+                        description: "Запрос не выполнен"
+                    }
+                }
+            }
+        },
+        '/api/user/auth':{
+            get:{
+                tags:['User'],
+                description: "Проверяет авторизацию пользователя",
+                operationId: "authUser",
+                parameters:[],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/LoginUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
+
 
     }
 }

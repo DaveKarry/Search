@@ -1,6 +1,13 @@
 
 module.exports = {
     components:{
+        securitySchemes:{
+            bearerAuth:{
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+            }
+        },
         schemas: {
             City:{
                 type: 'object',
@@ -117,6 +124,64 @@ module.exports = {
                 }
 
             },
+            CreateUser:{
+                type: 'object',
+                properties:{
+                    Uname:{
+                        type: 'string',
+                        description: "Имя пользователя",
+                        required: true
+                    },
+                    Sname: {
+                        type: 'string',
+                        description: "Фамилия пользователя",
+                        required: true
+                    },
+                    Tname:{
+                        type: 'string',
+                        description: "Отчество пользователя"
+                    },
+                    Email:{
+                        type: 'string',
+                        description: "Почта пользователя",
+                        required: true
+                    },
+                    Password:{
+                        type: 'string',
+                        description: "Проль пользователя",
+                        required: true
+                    }
+                },
+                example:{
+                    Email: 'user123@gmail.com',
+                    Number: '88005553535',
+                    Password: '_User123',
+                    Uname: 'Ivan',
+                    Sname: 'Ivanov',
+                    Tname: 'Ivanich'
+                }
+
+            },
+            LoginUser:{
+                type: 'object',
+                properties:{
+                    Email:{
+                        type: 'string',
+                        description: "Почта пользователя",
+                        required: true
+                    },
+                    Password:{
+                        type: 'string',
+                        description: "Проль пользователя",
+                        required: true
+                    }
+                },
+                example:{
+                    Email: 'user123@gmail.com',
+                    Password: '_User123'
+                }
+
+            },
             Event:{
                 type: 'object',
                 properties:{
@@ -167,6 +232,12 @@ module.exports = {
                 }
 
             }
+            
         }
-    }
+    },
+    security:[
+        {
+            bearerAuth:[]
+        }
+    ]
 }
