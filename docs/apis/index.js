@@ -226,9 +226,35 @@ module.exports = {
                         }
                     }
                 }
+            },
+            delete:{
+                tags:['Event'],
+                description: "Убирает событие из списка активных",
+                operationId: "deactivateEventById",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single event id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        },
-
-
+        }
     }
 }
