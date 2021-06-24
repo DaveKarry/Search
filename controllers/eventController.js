@@ -26,12 +26,26 @@ class EventController{
 
     async getOne(req,res){
         const {id} = req.params
+        console.log(req.params.id)
         const event = await Event.findOne(
             {
                 where: {id}
             }
         )
         return res.json(event)
+    }
+
+    async deactivateOne(req,res){
+        console.log("here")
+        let {id} = req.params  
+        Event.update(
+            {Status: "DEACTIVATE"},
+            {
+                where: {id}
+            }
+        )
+        return res.send({message: "event was deactevated"})
+        
     }
 }
 
