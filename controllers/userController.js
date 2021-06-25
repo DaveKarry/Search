@@ -60,17 +60,20 @@ class UserController{
         const user = await User.findOne({where: {Id: id}})
         if (user.Status == "ACTIVE"){
             User.update(
-                {Status: "BAN"},
+                {
+                    Status: "BAN"
+                },
                 {
                     where: {id}
                 }
             )
             return res.send({message: "user has been baned"})
-
         }
         else{
             User.update(
-                {Status: "ACTIVE"},
+                {
+                    Status: "ACTIVE"
+                },
                 {
                     where: {id}
                 }
@@ -79,6 +82,37 @@ class UserController{
         }
     }
 
+
+    async setRole(req, res){
+        console.log("tttt")
+        let {id} = req.params
+        const user = await User.findOne({where: {Id: id}})
+        if (user.Role == "USER"){
+            User.update(
+                {
+                    Role: "MODERATOR"
+                },
+                {
+                    where: {id}
+                }
+            )
+            return res.send({message: "Now user is moderator"})
+        }
+        else if (user.Role == "MODERATOR"){
+            User.update(
+                {
+                    Role: "USER"
+                },
+                {
+                    where: {id}
+                }
+            )
+            return res.send({message: "now user isn't moderator"})
+        }
+        else{
+            return res.send({message: "User is ADMIN"})
+        }
+    }
 }
 
 

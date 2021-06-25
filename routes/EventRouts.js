@@ -4,10 +4,10 @@ const eventController = require('../controllers/eventController')
 const checkRole = require('../middleware/checkRoleMiddleware')
 
 
-router.post('/', checkRole("ADMIN"), eventController.create)
+router.post('/', checkRole("MODERATOR"), eventController.create)
 router.get('/',eventController.getAll)
 router.get('/:id',eventController.getOne)
-router.delete('/:id',checkRole("ADMIN"),eventController.deactivateOne)
+router.delete('/:id',checkRole("MODERATOR"),eventController.deactivateOne)
 
 
 module.exports = router

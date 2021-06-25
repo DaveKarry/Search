@@ -175,6 +175,29 @@ module.exports = {
                 }
             }
         },
+        '/api/user/setModer/{id}':{
+            post:{
+                tags:['User'],
+                description: "меняет роль пользователя c USER на MODERATOR и обратно",
+                operationId: "setUserRole",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single user id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                    }
+                }
+            }
+        },
         '/api/event':{
             get:{
                 tags: ['Event'],
