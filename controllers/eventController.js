@@ -26,12 +26,17 @@ class EventController{
 
     async getOne(req,res){
         const {id} = req.params
-        console.log(req.params.id)
         const event = await Event.findOne(
             {
                 where: {id}
             }
         )
+        const city = await City.findOne(
+            {
+                where: {id: event.cityId}
+            }
+        )
+        event.cityId = city
         return res.json(event)
     }
 
