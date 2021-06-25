@@ -8,6 +8,6 @@ router.post('/', checkRole("MODERATOR"), eventController.create)
 router.get('/',eventController.getAll)
 router.get('/:id',eventController.getOne)
 router.delete('/:id',checkRole("MODERATOR"),eventController.deactivateOne)
-
+router.put('/:id',checkRole("MODERATOR"), eventController.updateEvent)
 
 module.exports = router

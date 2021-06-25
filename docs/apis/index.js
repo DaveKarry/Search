@@ -300,6 +300,36 @@ module.exports = {
                         }
                     }
                 }
+            },
+            put: {
+                tags:['Event'],
+                description: "Обновляет событие",
+                operationId: "updateEvent",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single event id"
+                    }
+                ],
+                requestBody: {
+                    content:{
+                        'application/json': {
+                            schema:{
+                                $ref:'#/components/schemas/CreateEvent'
+                            }
+                        }
+                    }
+                },
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен"
+                    }
+                }
             }
         }
     }

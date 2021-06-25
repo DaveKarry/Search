@@ -47,6 +47,21 @@ class EventController{
         return res.send({message: "event was deactevated"})
         
     }
+
+
+    async updateEvent(req,res){
+        try{
+            const id = req.params.id;
+            Event.update(req.body, {
+                where: { id: id }
+            })
+            return res.send({message: "updated"})
+        }catch(e){
+            next(ApiError.badRequest(e.message))
+        }
+        
+
+    }
 }
 
 
