@@ -52,8 +52,31 @@ class UserController{
 
     async check(req,res, next){
         const token = generateJWT(req.user.id, req.user.Email, req.user.Role)
-        console.log("hello",req.user.id, req.user.Email, req.user.Role)
         return res.json({token})
+    }
+
+    async banedStatus(req,res){
+        let {id} = req.params
+        const user = await User.findOne({where: {Id: id}})
+        if (user.Status == "ACTIVE"){
+            User.update(
+                {Status: "BAN"},
+                {
+                    where: {id}
+                }
+            )
+            return res.send({message: "user has been baned"})
+
+        }
+        else{
+            User.update(
+                {Status: "ACTIVE"},
+                {
+                    where: {id}
+                }
+            )
+            return res.send({message: "user has been disbaned"})
+        }
     }
 
 }

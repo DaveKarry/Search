@@ -152,6 +152,29 @@ module.exports = {
                 }
             }
         },
+        '/api/user/ban/{id}':{
+            put:{
+                tags:['User'],
+                description: "меняет статус пользователя c BAN на ACTIVE и обратно",
+                operationId: "banUser",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single user id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                    }
+                }
+            }
+        },
         '/api/event':{
             get:{
                 tags: ['Event'],
