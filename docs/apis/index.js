@@ -266,7 +266,7 @@ module.exports = {
                         content:{
                             'application/json':{
                                 schema:{
-                                    $ref:"#/components/schemas/Event"
+                                    $ref:"#/components/schemas/EventWithCity"
                                 }
                             }
                         }
