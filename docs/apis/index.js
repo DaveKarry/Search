@@ -105,6 +105,60 @@ module.exports = {
                 }
             }
         },
+        '/api/user':{
+            get:{
+                tags:['User'],
+                description: "list of users",
+                operationId: "listUser",
+                responses:{
+                    '200':{
+                        description:"UserList were obtained",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:'#/components/schemas/User'
+                                }
+                            },
+                            'application/xml':{
+                                schema:{
+                                    $ref:'#/components/schemas/User'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        '/api/user/{id}':{
+            get:{
+                tags:['User'],
+                description: "get one users",
+                operationId: "getUser",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single user id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         '/api/user/login':{
             post:{
                 tags:['User'],

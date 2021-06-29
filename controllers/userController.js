@@ -113,6 +113,22 @@ class UserController{
             return res.send({message: "User is ADMIN"})
         }
     }
+
+    async getAll(req,res){
+        let users
+        users = await User.findAll()
+        return res.json(users)
+    }
+
+    async getOne(req, res){
+        const {id} = req.params
+        const user = await User.findOne(
+            {
+                where: {id}
+            }
+        )
+        return res.json(user)
+    }
 }
 
 
