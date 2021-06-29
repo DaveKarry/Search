@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User} = require('../models/models')
+const {User, City} = require('../models/models')
 
 const generateJWT = (id, email, role) =>{
     return jwt.sign(
@@ -116,7 +116,16 @@ class UserController{
 
     async getAll(req,res){
         let users
-        users = await User.findAll()
+        users = await User.findAll({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt', 'Password']
+            },
+            include: [{
+                model: City,
+                attributes:['Name']
+            }]
+
+        })
         return res.json(users)
     }
 
