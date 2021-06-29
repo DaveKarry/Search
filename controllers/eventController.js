@@ -1,5 +1,6 @@
 const {Event, City} = require("../models/models")
 const ApiError = require('../error/ApiError')
+const { getOne } = require("./userController")
 
 class EventController{
     async create(req,res, next){
@@ -16,7 +17,18 @@ class EventController{
         let {cityId} = req.query
         let events
         if(!cityId){
-            events = await Event.findAll()
+            events = await Event.findAll({
+                where: {},
+                include:
+                [
+                    {
+                        model: City,
+                        where: {},
+                        required: true,
+                        attributes:['Name']
+                    }
+                ]
+            })
         }
         if(cityId){
             events = await Event.findAll({where: {cityId}})
