@@ -1,6 +1,8 @@
-const {Event, City} = require("../models/models")
+const {Event, City, User, UsersEvent} = require("../models/models")
 const ApiError = require('../error/ApiError')
 const { getOne } = require("./userController")
+const jwt = require('jsonwebtoken')
+
 
 class EventController{
     async create(req,res, next){
@@ -76,8 +78,43 @@ class EventController{
         }catch(e){
             next(ApiError.badRequest(e.message))
         }
-        
+    }
 
+    async joinEvent(req,res){
+        try{
+            const {id} = req.params
+            const event = await Event.findOne(
+                {
+                    where: {id}
+                }
+            )
+            if (!event){
+                return res.status(404).json({message: "event not found"})
+            }
+            const token =req.headers.authorization.split(' ')[1]
+            if (!token){
+                return res.status(401).json({message: "Не авторизован"})
+            }
+            const {email} = jwt.verify(token, process.env.SECRET_KEY)
+            const user = await User.findOne(
+                {
+                    where: { email } 
+                }
+            )
+            let userId = user.Id
+            let eventId = event.Id
+            const table = await UsersEvent.findOne({
+                where: {userId, eventId}
+            })
+            if (!table){
+                event.addUser(user)
+                return res.send({message: "joined"})
+            }
+            return res.status(400).json({message: "already joined"})
+        }catch(e){
+            res.status(401).json({message: "Не авторизован"})
+        }
+        
     }
 }
 

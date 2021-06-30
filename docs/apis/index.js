@@ -385,6 +385,38 @@ module.exports = {
                     }
                 }
             }
+        },
+        '/api/event/{id}/join':{
+            post:{
+                tags:['Event'],
+                description: "залогиненый пользователь присоединяется к мероприятию на странице мероприятия ",
+                operationId: "joinEvent",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single event id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description: "user joined to event"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    },
+                    '404':{
+                        description: "Не найдено событие"
+                    },
+                    '400':{
+                        description: "Пользователь уже в событии"
+                    }
+                }
+            }
         }
     }
 }

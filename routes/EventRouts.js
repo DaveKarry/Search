@@ -9,5 +9,6 @@ router.get('/',eventController.getAll)
 router.get('/:id',eventController.getOne)
 router.delete('/:id',checkRole("MODERATOR"),eventController.deactivateOne)
 router.put('/:id',checkRole("MODERATOR"), eventController.updateEvent)
+router.post('/:id/join', eventController.joinEvent)
 
 module.exports = router
