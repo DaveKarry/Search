@@ -439,6 +439,55 @@ module.exports = {
                     }
                 }
             }
+        },
+        '/api/badge':{
+            get:{
+                tags: ['Badge'],
+                description: "Get badge list",
+                operationId: 'getBadgeList',
+                responses:{
+                    '200':{
+                        description:"BadgeList were obtained",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:'#/components/schemas/Badge'
+                                }
+                            },
+                            'application/xml':{
+                                schema:{
+                                    $ref:'#/components/schemas/Badge'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            post:{
+                tags:['Badge'],
+                description: "Create new Badge",
+                operationId: "createBadge",
+                requestBody: {
+                    content:{
+                        'application/json': {
+                            schema:{
+                                $ref:'#/components/schemas/CreateBadge'
+                            }
+                        }
+                    }
+                },
+                responses:{
+                    '200':{
+                        description: "Badge created successfully"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    },
+                    '400':{
+                        description: "Уже существует"
+                    }
+                }
+            }
         }
     }
 }

@@ -325,7 +325,65 @@ module.exports = {
                     cityId: 54
                 }
 
-            }
+            },
+            Badge:{
+                type: 'object',
+                properties:{
+                    Id:{
+                        type: 'integer',
+                        description: 'Уникальный идентифкатор'
+                    },
+                    Name:{
+                        type: 'string',
+                        description: 'Название Бейджа',
+                        required: true
+                    },  
+                    Description:{
+                        type: 'string',
+                        description: 'Описание Бейджа',
+                        required: true
+                    },
+                    createdAt:{
+                        type: 'date',
+                        description: 'Создание записи',
+                        required: false
+
+                    },
+                    updatedAt:{
+                        type: 'date',
+                        description: 'обновление записи',
+                        required: false
+
+                    }
+                },
+                example:{
+                    Id: 6432,
+                    Name: "Кинолог",
+                    Description: "Владеет поисковой собакой, способной найти человека",
+                    createdAt: "2021-06-17T10:37:18.000Z",
+                    updatedAt: "2021-06-17T10:37:18.000Z"
+                }          
+            },
+            CreateBadge:{
+                type: 'object',
+                properties:{
+                    Name:{
+                        type: 'string',
+                        description: 'Название Бейджа',
+                        required: true
+                    },
+                    Description:{
+                        type: 'string',
+                        description: 'Описание Бейджа',
+                        required: true
+                    }
+                },
+                example:{
+                    Name: 'Кинолог',
+                    Description: 'Владеет поисковой собакой'
+                }
+
+            },
             
         }
     },

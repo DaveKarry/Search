@@ -33,6 +33,16 @@ const UsersEvent = sequelize.define('usersEvent', {
     Id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
+const Badge = sequelize.define('badge',{
+    Id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    Name: {type: DataTypes.STRING, unique: true, allowNull: false},
+    Description: {type: DataTypes.STRING},
+})
+
+const UsersBadge = sequelize.define('usersBadge',{
+    Id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    Status: {type: DataTypes.STRING, allowNull: false, default: "DEACTIVE"}
+})
 
 City.hasMany(User)
 User.belongsTo(City)
@@ -41,14 +51,17 @@ User.belongsTo(City)
 City.hasMany(Event)
 Event.belongsTo(City)
 
-
 Event.belongsToMany(User, { through: UsersEvent})
 User.belongsToMany(Event, { through: UsersEvent})
 
+User.belongsToMany(Badge, { through: UsersBadge})
+Badge.belongsToMany(User, { through: UsersBadge})
 
 module.exports = {
     User,
     Event,
     City,
-    UsersEvent
+    Badge,
+    UsersEvent,
+    UsersBadge
 }
