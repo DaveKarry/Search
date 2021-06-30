@@ -130,7 +130,7 @@ class UserController{
     }
 
     async getOne(req, res){
-        const {id} = req.params
+        const id = req.params.id
         const user = await User.findOne(
             {
                 where: {id}
@@ -138,6 +138,8 @@ class UserController{
         )
         return res.json(user)
     }
+
+    
 }
 
 

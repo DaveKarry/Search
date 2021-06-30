@@ -105,6 +105,28 @@ module.exports = {
                 }
             }
         },
+        '/api/profile':{
+            get:{
+                tags:['Profile'],
+                description: "get user profile",
+                operationId: "getSelfUser",
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    '401':{
+                        description: "Не авторизован",
+                    }
+                }
+            }
+        },
         '/api/user':{
             get:{
                 tags:['User'],
