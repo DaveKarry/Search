@@ -41,7 +41,7 @@ const Badge = sequelize.define('badge',{
 
 const UsersBadge = sequelize.define('usersBadge',{
     Id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    Status: {type: DataTypes.STRING, allowNull: false, default: "DEACTIVE"}
+    Status: {type: DataTypes.STRING, allowNull: false, defaultValue: "DEACTIVE"}
 })
 
 City.hasMany(User)
@@ -63,5 +63,5 @@ module.exports = {
     City,
     Badge,
     UsersEvent,
-    UsersBadge
+    UsersBadge,
 }

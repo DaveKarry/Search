@@ -5,6 +5,7 @@ const checkRole = require('../middleware/checkRoleMiddleware')
 
 
 router.post('/', checkRole("ADMIN"), badgeController.create)
+router.post('/:id/join', badgeController.joinBadge)
 router.get('/', badgeController.getAll)
 
 

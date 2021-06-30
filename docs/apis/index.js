@@ -488,6 +488,38 @@ module.exports = {
                     }
                 }
             }
+        },
+        '/api/badge/{id}/join':{
+            post:{
+                tags:['Badge'],
+                description: "залогиненый пользователь отправляет ззаявку на бейдж",
+                operationId: "joinBadge",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single badge id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description: "заявка подана"
+                    },
+                    '401':{
+                        description: "Не авторизован"
+                    },
+                    '404':{
+                        description: "Не найден бейдж"
+                    },
+                    '400':{
+                        description: "Пользователь уже подал заявку или бейдж одобрен"
+                    }
+                }
+            }
         }
     }
 }
