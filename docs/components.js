@@ -286,6 +286,69 @@ module.exports = {
                 }
 
             },
+            EventWithUser:{
+                type: 'object',
+                properties:{
+                    Id:{
+                        type: 'integer',
+                        description: 'Уникальный идентифкатор'
+                    },
+                    Name:{
+                        type: 'string',
+                        description: 'Название поиска',
+                        required: true
+                    },
+                    Target:{
+                        type: 'string',
+                        description: 'Цель поиска, подробности о человеке',
+                        required: true
+                    },
+                    Date:{
+                        type: 'string',
+                        pattern: 'YYYY-MM-DD',
+                        description: 'Дата начала поиска',
+                        required: true
+
+                    },
+                    Status:{
+                        type: 'string',
+                        description: 'Состояние поиска: ACTIVE, END'
+                    },
+                    Description:{
+                        type: 'string',
+                        description: 'Дополнительные факты/параметры поиска',
+                        required: true
+                    },
+                    cityId:{
+                        $ref:'#/components/schemas/City'
+                    },
+                    users:{ 
+                    }
+                },
+                example:{
+                    Id: 234,
+                    Name: 'Поиск пр городе N',
+                    Target: 'Девушка 26 лет, Мария Машина',
+                    Date: '2021-10-03',
+                    Status: 'ACTIVE',
+                    Description: 'Потерялась в окрестностях леса, пока искала грибы',
+                    cityId: {
+                        Id: 6432,
+                        Name: "Surgut",
+                        Description: "Surgut District",
+                        createdAt: "2021-06-22T15:02:28.000Z",
+                        updatedAt: "2021-06-22T15:02:28.000Z"
+                    },
+                    users: {
+                        Id: 12,
+                        Name: "ivan",
+                        Tname: "ivanov",
+                        Sname: "ivanich",
+                        Email: "ivan@gmail.com"
+                    }
+                }
+
+            },
             CreateEvent:{
                 type: 'object',
                 properties:{

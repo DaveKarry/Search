@@ -408,6 +408,36 @@ module.exports = {
                 }
             }
         },
+        '/api/event/{id}/users':{
+            get:{
+                tags:['Event'],
+                description: "Get one event by id with users",
+                operationId: "getEventsUserListById",
+                parameters:[
+                    {
+                        name:"id",
+                        in:"path",
+                        schema:{
+                            type: 'integer'
+                        },
+                        required:true,
+                        description: "A single event id"
+                    }
+                ],
+                responses:{
+                    '200':{
+                        description:"Запрос выполнен",
+                        content:{
+                            'application/json':{
+                                schema:{
+                                    $ref:"#/components/schemas/EventWithUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+        },
         '/api/event/{id}/join':{
             post:{
                 tags:['Event'],

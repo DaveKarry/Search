@@ -67,7 +67,6 @@ class EventController{
         
     }
 
-
     async updateEvent(req,res){
         try{
             const id = req.params.id;
@@ -114,6 +113,28 @@ class EventController{
         }catch(e){
             res.status(401).json({message: "Не авторизован"})
         }
+        
+    }
+
+    async getUserList(req, res){
+        const { id } = req.params
+        const event = await Event.findByPk(id, {
+            include: [{
+                model: User,
+                attributes: ["id", "UName", "Tname", "Sname", "Email"],
+
+            },
+            {
+                model: City,
+                attributes: ["Name"]
+            }
+            ]
+        }
+        )
+        if (!event){
+            return res.status(404).json({message: "not found"})
+        }
+        return res.status(200).json(event)
         
     }
 }

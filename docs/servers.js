@@ -7,6 +7,6 @@ module.exports = {
         {
             url:"https://dry-sea-02089.herokuapp.com/",
             description:"Heroku server"
-        },
+        }
     ]
 }
